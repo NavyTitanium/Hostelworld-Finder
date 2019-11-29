@@ -3,6 +3,7 @@ Returns the best hostels from hostelworld.com given a location and date. The hos
 
 - Sort the hostels by number of reviews
 - Process the comments made by users
+    - By default, only the first 6 pages are fetched for each hostels, using 15 threads
     - Get the most frequent words used
     - Count Male/Female
     - Count users nationality
