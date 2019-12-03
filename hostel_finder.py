@@ -149,12 +149,23 @@ def get_city_id(city):
 	response=r.json()
 	if(len(response)>0):
 		try:
+			places=[]
 			for x in response:
-				cityid=x["id"]
-				label=x["label"]
+				if(x["type"] != "property"):
+					places.append(x)
+					
+			output=""
+			for i in range(len(places)):
+				output=output+str(i+1) + ") " + places[i]["label"] + "\n"
 				
-				# Just get the first result returned
-				return cityid,label
+			try:
+				choice=input("Select between:\n" + output + "->")
+				val = int(choice)
+			except ValueError:
+				raise ValueError("Choice is invalid")
+				
+			return places[int(choice)-1]["id"],places[int(choice)-1]["label"]
+			
 		except:
 			print("Destination not found")
 			exit(0)
